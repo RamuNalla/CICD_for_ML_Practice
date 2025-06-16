@@ -21,8 +21,8 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.3, random_state=125
 )
 
-cat_col = [1,2,3]
-num_col = [0,4]
+cat_col = [1, 2, 3]
+num_col = [0, 4]
 
 transform = ColumnTransformer(
     [
@@ -55,5 +55,4 @@ disp.plot()
 plt.savefig("Results/model_results.png", dpi=120)
 
 sio.dump(pipe, "Model/drug_pipeline.skops")
-
-# Temp check
+#s
