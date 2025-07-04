@@ -2,7 +2,6 @@ import time
 import os
 from pathlib import Path
 from datetime import timedelta
-
 from prefect import flow, task
 
 TEMP_DIR = Path("temp_ml_data")
@@ -17,7 +16,7 @@ def download_data(file_path: Path):
         f.write("Line 2 of data.\n")
         f.write("Line 3 of data.\n")
     print(f"Task A: Data downloaded successfully to {file_path}")
-    time.sleep(2)
+    time.sleep(20)
     return str(file_path)
 
 @task
@@ -30,7 +29,7 @@ def preprocess_data(data_file_path: str):
             print(content)
             print("--- End of Content ---")
         print("Task B: Data preprocessed successfully.")
-        time.sleep(3)
+        time.sleep(15)
         return "preprocessed_data_summary"
     except FileNotFoundError:
         print(f"Error: File not found at {data_file_path}")
@@ -40,7 +39,7 @@ def preprocess_data(data_file_path: str):
 def train_model(preprocessed_summary: str):
     print(f"Task C: Training model with {preprocessed_summary}...")
     print("Task C: Model training complete.")
-    time.sleep(4)
+    time.sleep(15)
     return "trained_model_v1.0"
 
 @flow(name="ML Orchestration Example Flow")
